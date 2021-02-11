@@ -97,6 +97,19 @@ module.exports={
     "wep_rate": 3,
     "wep_acc": 2,
     "wep_vel": 2
+  },
+  "giant": {
+    "class": "Giant",
+    "size": "Large",
+    "hullMax": 7,
+    "hull": 7,
+    "armorMax": 5,
+    "armor": 5,
+    "evasion": 1,
+    "wep_dam": 5,
+    "wep_rate": 3,
+    "wep_acc": 2,
+    "wep_vel": 2
   }
 }
 
@@ -185,7 +198,7 @@ const craftData = (c) => {
   return ['g',
     ['g',
       {transform: 'translate(10, 10)'},
-      ClassIcon(c.getClass())
+      classIcon(c.getClass())
     ],
     ['g',
       ['text', {x:50, y:20, class: 'textLabel'}, c.getName()],
@@ -196,9 +209,10 @@ const craftData = (c) => {
   ]
 }
 
-const ClassIcon = (n) => {
+const classIcon = (n) => {
   if (n === 'Arrow') {return ['path', { d: 'M 15,0 L 30, 30 L 15, 25 L 0, 30 Z', class: 'frame' }];}
   if (n === 'Fat') {return ['path', { d: 'M 15,0 L 30, 25 L 15, 30 L 0, 25 Z', class: 'frame' }];}
+  if (n === 'Giant') {return ['path', { d: 'M 10,0 L 20, 0 L 30,25 L 20,30 L 10,30 L 0, 25 Z', class: 'frame' }];}
 }
 
 },{"tspan":76}],4:[function(require,module,exports){
@@ -247,10 +261,30 @@ const attack = (att, def) => {
   }
 };
 
-let redCraft = ['arrow', 'fat']
-  .map((klass, idx) => craft('RED' + idx, templato[klass]));
-let blueCraft = ['arrow', 'arrow', 'arrow']
-  .map((klass, idx) => craft('BLUE' + idx, templato[klass]));
+function getRandomInt(min, max) { //Thanks stock
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+const listOfPossibleCraft = ['arrow', 'fat', 'giant'];
+
+let redCraft = [];
+let blueCraft = [];
+
+const teamRandomizer = (colorCraft) => {
+  for (let i = getRandomInt(1, 6); i > 0; i--) {
+    colorCraft.push(listOfPossibleCraft[0,
+      (getRandomInt(0, listOfPossibleCraft.length))]);
+  }
+  return colorCraft;
+}
+
+redCraft = teamRandomizer(redCraft);
+blueCraft = teamRandomizer(blueCraft);
+
+redCraft = redCraft.map((klass, idx) => craft('RED' + idx, templato[klass]));
+blueCraft = blueCraft.map((klass, idx) => craft('BLUE' + idx, templato[klass]));
 
 let redCount = redCraft.length;
 let blueCount = blueCraft.length;

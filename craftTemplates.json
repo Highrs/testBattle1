@@ -24,5 +24,18 @@
     "wep_rate": 3,
     "wep_acc": 2,
     "wep_vel": 2
+  },
+  "giant": {
+    "class": "Giant",
+    "size": "Large",
+    "hullMax": 7,
+    "hull": 7,
+    "armorMax": 5,
+    "armor": 5,
+    "evasion": 1,
+    "wep_dam": 5,
+    "wep_rate": 3,
+    "wep_acc": 2,
+    "wep_vel": 2
   }
 }

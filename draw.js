@@ -82,7 +82,7 @@ const craftData = (c) => {
   return ['g',
     ['g',
       {transform: 'translate(10, 10)'},
-      ClassIcon(c.getClass())
+      classIcon(c.getClass())
     ],
     ['g',
       ['text', {x:50, y:20, class: 'textLabel'}, c.getName()],
@@ -93,7 +93,8 @@ const craftData = (c) => {
   ]
 }
 
-const ClassIcon = (n) => {
+const classIcon = (n) => {
   if (n === 'Arrow') {return ['path', { d: 'M 15,0 L 30, 30 L 15, 25 L 0, 30 Z', class: 'frame' }];}
   if (n === 'Fat') {return ['path', { d: 'M 15,0 L 30, 25 L 15, 30 L 0, 25 Z', class: 'frame' }];}
+  if (n === 'Giant') {return ['path', { d: 'M 10,0 L 20, 0 L 30,25 L 20,30 L 10,30 L 0, 25 Z', class: 'frame' }];}
 }
