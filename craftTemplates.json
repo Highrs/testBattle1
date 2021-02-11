@@ -1,0 +1,28 @@
+{
+  "arrow": {
+    "class": "Arrow",
+    "size": "Light",
+    "hullMax": 3,
+    "hull": 3,
+    "armorMax": 1,
+    "armor": 1,
+    "evasion": 3,
+    "wep_dam": 1,
+    "wep_rate": 2,
+    "wep_acc": 3,
+    "wep_vel": 3
+  },
+  "fat": {
+    "class": "Fat",
+    "size": "Medium",
+    "hullMax": 5,
+    "hull": 5,
+    "armorMax": 3,
+    "armor": 3,
+    "evasion": 1,
+    "wep_dam": 3,
+    "wep_rate": 3,
+    "wep_acc": 2,
+    "wep_vel": 2
+  }
+}
